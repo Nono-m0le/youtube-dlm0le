@@ -6,8 +6,8 @@ id=`echo $url | cut -d"=" -f2`
 echo "http://img.youtube.com/vi/$id/0.jpg"
 echo $url
 youtube-dl -F $url > /tmp/youtube-dl; 
-mp4=`grep "mp4" /tmp/youtube-dl | head -n 1 | sed -e "s/\(^[0-9]*\)/#\1#/" | cut -d"#" -f2`;
-webm=`grep "webm" /tmp/youtube-dl | head -n 1 | sed -e "s/\(^[0-9]*\)/#\1#/" | cut -d"#" -f2`;
+mp4=`grep "mp4" /tmp/youtube-dl | tail -n 1 | sed -e "s/\(^[0-9]*\)/#\1#/" | cut -d"#" -f2`;
+webm=`grep "webm" /tmp/youtube-dl | tail -n 1 | sed -e "s/\(^[0-9]*\)/#\1#/" | cut -d"#" -f2`;
 echo "youtube-dl -f $mp4 $url (mp4)";
 youtube-dl -f $mp4 $url;
 echo "youtube-dl -f $webm $url (webm)";
