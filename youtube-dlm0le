@@ -8,8 +8,8 @@ echo $url
 youtube-dl -F $url > /tmp/youtube-dl; 
 mp4=`grep "mp4" /tmp/youtube-dl | tail -n 1 | sed -e "s/\(^[0-9]*\)/#\1#/" | cut -d"#" -f2`;
 webm=`grep "webm" /tmp/youtube-dl | tail -n 1 | sed -e "s/\(^[0-9]*\)/#\1#/" | cut -d"#" -f2`;
-echo "youtube-dl -f $mp4 $url (mp4)";
-youtube-dl -f $mp4 $url;
-echo "youtube-dl -f $webm $url (webm)";
-youtube-dl -f $webm $url;
+echo "youtube-dl -f $mp4 $url -o "%(title)s.%(ext)s" --restrict-filenames (mp4)";
+youtube-dl -f $mp4 $url -o "%(title)s.%(ext)s" --restrict-filenames;
+echo "youtube-dl -f $webm $url -o "%(title)s.%(ext)s" --restrict-filenames (webm)";
+youtube-dl -f $webm $url -o "%(title)s.%(ext)s" --restrict-filenames;
 chown 33.33 ${dir}/*;
